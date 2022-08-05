@@ -46,7 +46,7 @@ def game():
 def wpn1(enemyNormal):
     print("Ak-47 selected")
     damage = 400
-    hit = random.uniform(0,10)
+    hit = random.uniform(0,1)
     print("Firing...")
     if hit >= 1:
         
