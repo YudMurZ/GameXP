@@ -1,6 +1,7 @@
 import random
 import sys
 import time
+from weapon import weapon
 
 health = 100
 enemyEasy = 50
