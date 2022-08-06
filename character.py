@@ -1,14 +1,15 @@
 class human:
-    def __init__(self, health):
-       self.health = health
-       self.weapon = None
+    def __init__(self, name):
+        self.name = name
+        self.health = 100
+        self.weapon = None
 
     def chara(self):
-        print("Your health : " + str(self.health))
+        print(self.name + "'s HP : " + str(self.health))
 
-    def equip(self, weapon):
+    def equipWeapon(self, weapon):
         self.weapon = weapon
-        print("You have equipped " + self.weapon)
+        print(self.weapon + " is equipped.")
 
-obj = human(100)
-obj.chara()
+    def getWeapon(self):
+        print("Your Weapon : " + self.weapon)
