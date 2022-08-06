@@ -13,7 +13,8 @@ from database import *
 
 
 def main():
-    mainmenu()
+    #mainmenu()
+    game()
 
 
 def mainmenu():
@@ -22,7 +23,7 @@ def mainmenu():
     print(" 1. Play")
     print(" 2. Exit")
 
-    opt = input("Enter the number : ")
+    opt = int(input("Enter the number : "))
     if opt == 1:
         game()
     else:
@@ -54,16 +55,16 @@ def game():
 
 def wpn1():
     print(weapons[0].name)
+    battle_enemy_1 = enemies[1]
     damage = weapons[0].dmg
     hit = random.uniform(0,1)
     print("Firing...")
     if hit >= weapons[0].acc:
-        
         time.sleep(2)
         print("Target Hit!")
-        enemies[1].health = enemies[1].health - damage
-        if enemies[1].health <= 0:
-            print("Target Eliminated!")
+        enemyHP = enemies[1].health - damage
+        if enemyHP <= 0:
+            del battle_enemy_1
             time.sleep(2)
             print("Mission accomplished! \n")
             time.sleep(2)
