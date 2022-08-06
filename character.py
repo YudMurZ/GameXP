@@ -9,7 +9,7 @@ class Human:
 
     def equipWeapon(self, weapon):
         self.weapon = weapon
-        print(self.weapon + " is equipped.")
+        print(self.weapon.name + " is equipped.")
 
     def getWeapon(self):
         print("Your Weapon : " + self.weapon)
