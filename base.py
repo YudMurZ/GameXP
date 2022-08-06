@@ -44,17 +44,17 @@ def game():
     #difficulty = int(input("Select enemy difficulty : "))
 
 
-def wpn1(enemyNormal):
-    print("Ak-47 selected")
+def wpn1():
+    print(weapons[0])
     damage = 400
-    hit = random.uniform(0, 1)
+    hit = random.uniform(0,1)
     print("Firing...")
-    if hit >= 1:
-
+    if hit >= 0.1:
+        
         time.sleep(2)
         print("Target Hit!")
-        enemyNormal = enemyNormal - damage
-        if enemyNormal <= 0:
+        enemies[1][1] = enemies[1][1] - damage
+        if enemies[1][1] <= 0:
             print("Target Eliminated!")
             time.sleep(2)
             print("Mission accomplished! \n")
@@ -65,11 +65,12 @@ def wpn1(enemyNormal):
             pick = int(input("Select your choice : "))
             if pick == 2:
                 sys.exit()
-            if pick == 1:
+            if pick ==1:
                 game()
+            
 
         else:
-            print("Target Remaining health :" + str(enemyNormal))
+            print("Target Remaining health :" + str(enemies[1][1]))
 
     else:
         print("Missed!")
