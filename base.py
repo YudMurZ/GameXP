@@ -3,10 +3,11 @@ import sys
 import time
 from database import *
 
-health = 100
-enemyEasy = 50
-enemyNormal = 100
-enemyHard = 200
+#FOR TESTING PURPOSES
+#health = 100
+#enemyEasy = 50
+#enemyNormal = 100
+#enemyHard = 200
 
 
 def main():
