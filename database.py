@@ -1,4 +1,3 @@
-from Weapon import weapon
 from Enemy import *
 from Weapon import *
 
