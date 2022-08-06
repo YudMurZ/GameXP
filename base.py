@@ -1,16 +1,12 @@
-from argparse import Action
 from os import system
 from Character import *
 from Database import *
 import random
 import sys
 import time
-
-# FOR TESTING PURPOSES
-# health = 100
-# enemyEasy = 50
-# enemyNormal = 100
-# enemyHard = 200
+from database import *
+from character import *
+from os import system
 
 
 def main():
@@ -90,6 +86,8 @@ def battleMode(player, diff):
 
 def easy():
     print(weapons[0].name)
+    time.sleep(2)
+
     battle_enemy_1 = enemies[1]
     damage = weapons[0].dmg
     hit = random.uniform(0, 1)
@@ -113,29 +111,37 @@ def easy():
                 selectionMode()
 
         else:
-            print("Target Remaining health :" + str(enemies[1].health))
+            print("Target Remaining health :" + str(enemyHP))
+            time.sleep(2)
+            print("Enemy Turn!")
+            enemyATK1()
 
     else:
+        dmg = 0
+        enemyHP = enemies[1].health - dmg
         time.sleep(2)
         print("Missed!")
+        print("Target Remaining health :" + str(enemyHP))
+        time.sleep(2)
+        enemyATK1()
 
 
 def enemyATK1():
     time.sleep(2)
     battle_enemies_atk_1 = enemies[1]
-    player_cond = human
+    player_cond = Human
     attack = enemies[1].attack
     hit = enemies[1].acc
     chance = random.uniform(0, 1)
     if hit <= chance:
         print("You are hit!")
-        playerHP = human.health - attack
+        playerHP = Human.health - attack
 
         if playerHP <= 0:
             print("You are dead!")
 
         else:
-            print("Your health = " + playerHP)
+            print("Your health = " + str(playerHP))
 
     else:
         print("Enemy Missed!")
@@ -143,5 +149,5 @@ def enemyATK1():
 
 main()
 # if difficulty ==1:
-# print("Enemy turn!")
-# print("Enemy Attacking!")
+#print("Enemy turn!")
+#print("Enemy Attacking!")
