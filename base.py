@@ -1,4 +1,5 @@
 from ast import For
+from os import system
 import random
 import sys
 import time
@@ -13,43 +14,63 @@ from database import *
 
 
 def main():
-    mainmenu()
+    mainMenu()
 
 
-def mainmenu():
+def mainMenu():
     print("Welcome to game-ish")
     time.sleep(2)
-    print(" 1. Play")
-    print(" 2. Exit")
-
+    print(" 1. Play\n 2. Exit")
     opt = input("Enter the number : ")
-    if opt == 1:
-        game()
+    if opt == "1":
+        selectionMode()
     else:
         sys.exit()
 
 
-def game():
-
+def selectionMode():
     player = human(input("Input your username : "))
+    print("Hello, " + player.name + ". Welcome to the game")
     time.sleep(2)
-    print("Hello " + player.name + ". Welcome to the game")
-    time.sleep(2)
-    print("Weapon available :")
-    print("1. Ak-47")
-    print("2. M4A1")
-    print("3. Mp5")
 
-    weapon = int(input("Enter your weapon : "))
-    if weapon == 1:
-        wpn1()
+    weapon_input = False
+    while weapon_input == False:
+        print("Weapon available :")
+        for i in range(1, len(weapons)+1):
+            print(str(i) + ". " + weapons[i-1].name)
 
-    print("Enemy Difficulty :")
-    print("1. Easy")
-    print("2. Normal")
-    print("3. Hard")
+        weapon = input("Enter your weapon : ")
+        if weapon == "1":
+            human.equipWeapon(weapons[0])
+            weapon_input = True
+        elif weapon == "2":
+            human.equipWeapon(weapons[1])
+            weapon_input = True
+        elif weapon == "3":
+            human.equipWeapon(weapons[2])
+            weapon_input = True
+        else:
+            print("Invalid input")
+            weapon_input = False
+            system('cls')
 
-    # difficulty = int(input("Select enemy difficulty : "))
+    difficulty_input = False
+    while difficulty_input == False:
+        print("Select your difficulty :\n1. Easy\n2. Normal\n3. Hard")
+        difficulty = input("Select your difficulty : ")
+        if difficulty == "1":
+            wpn1()
+            difficulty_input = True
+        # elif difficulty == "2":
+        #     normal()
+        #     difficulty_input = True
+        # elif difficulty == "3":
+        #     hard()
+        #     difficulty_input = True
+        else:
+            print("Invalid input")
+            difficulty_input = False
+            system('cls')
 
 
 def wpn1():
