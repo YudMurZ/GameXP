@@ -83,11 +83,19 @@ def easy():
                 game()
 
         else:
-            print("Target Remaining health :" + str(enemies[1].health))
+            print("Target Remaining health :" + str(enemyHP))
+            time.sleep(2)
+            print("Enemy Turn!")
+            enemyATK1()
 
     else:
+        dmg = 0
+        enemyHP = enemies[1].health - dmg
         time.sleep(2)
         print("Missed!")
+        print("Target Remaining health :" + str(enemyHP))
+        time.sleep(2)
+        enemyATK1()
         
 def enemyATK1():
     time.sleep(2)
