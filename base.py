@@ -53,16 +53,16 @@ def game():
 
 
 def wpn1():
-    print(weapons[0])
-    damage = 400
-    hit = random.uniform(0, 1)
+    print(weapons[0].name)
+    damage = weapons[0].dmg
+    hit = random.uniform(0,1)
     print("Firing...")
-    if hit >= 0.1:
-
+    if hit >= weapons[0].acc:
+        
         time.sleep(2)
         print("Target Hit!")
-        enemies[1][1] = enemies[1][1] - damage
-        if enemies[1][1] <= 0:
+        enemies[1].health = enemies[1].health - damage
+        if enemies[1].health <= 0:
             print("Target Eliminated!")
             time.sleep(2)
             print("Mission accomplished! \n")
@@ -73,13 +73,15 @@ def wpn1():
             pick = int(input("Select your choice : "))
             if pick == 2:
                 sys.exit()
-            if pick == 1:
+            if pick ==1:
                 game()
+            
 
         else:
-            print("Target Remaining health :" + str(enemies[1][1]))
-
-    else:
+            print("Target Remaining health :" + str(enemies[1].health))
+    
+    else: 
+        time.sleep(2)
         print("Missed!")
 
 
