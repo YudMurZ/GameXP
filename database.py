@@ -2,13 +2,13 @@ from Enemy import *
 from Weapon import *
 
 weapons = [
-    Weapon('Ak-47', 0.6, 40),
-    Weapon('M4A1', 0.8, 25),
-    Weapon('Mp5', 0.9, 20)
+    weapon('Ak-47', 0.4, 40),
+    weapon('M4A1', 0.2, 25),
+    weapon('Mp5', 0.1, 20)
 ]
 
 enemies = [
-    Enemy('Slime', 50),
-    Enemy('Goblin', 100),
-    Enemy('Golem', 200)
+    enemy('Slime', 50, 20, 0.2),
+    enemy('Goblin', 100, 30, 0.5),
+    enemy('Golem', 200, 40, 0.6)
 ]
