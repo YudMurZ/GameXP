@@ -2,7 +2,7 @@ import random
 import sys
 import time
 from database import *
-from karakter import *
+from character import *
 from os import system
 
 #health = 100
