@@ -1,12 +1,9 @@
-from os import system
-from Character import *
-from Database import *
 import random
 import sys
 import time
-from database import *
-from character import *
 from os import system
+from Database import *
+from Character import *
 
 
 def main():
@@ -27,7 +24,7 @@ def mainMenu():
 
 def selectionMode():
     system('cls')
-    player = Human(input('Input player name : '))
+    player = Player(input('Input player name : '))
     print('Hello, ' + player.name + '. Welcome to the game')
     time.sleep(2)
 
@@ -129,13 +126,13 @@ def easy():
 def enemyATK1():
     time.sleep(2)
     battle_enemies_atk_1 = enemies[1]
-    player_cond = Human
+    player_cond = Player
     attack = enemies[1].attack
     hit = enemies[1].acc
     chance = random.uniform(0, 1)
     if hit <= chance:
         print("You are hit!")
-        playerHP = Human.health - attack
+        playerHP = Player.health - attack
 
         if playerHP <= 0:
             print("You are dead!")

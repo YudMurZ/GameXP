@@ -1,7 +1,3 @@
-import random
-from typing_extensions import Self
-
-
 class Enemy:
     def __init__(self, name, health, attack):
         self.name = name
