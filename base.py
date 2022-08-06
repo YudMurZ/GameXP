@@ -1,13 +1,15 @@
+from ast import For
 import random
 import sys
 import time
+from character import human
 from database import *
 
-#FOR TESTING PURPOSES
-#health = 100
-#enemyEasy = 50
-#enemyNormal = 100
-#enemyHard = 200
+# FOR TESTING PURPOSES
+# health = 100
+# enemyEasy = 50
+# enemyNormal = 100
+# enemyHard = 200
 
 
 def main():
@@ -15,18 +17,24 @@ def main():
 
 
 def mainmenu():
-    name = input("Input your username : ")
+    print("Welcome to game-ish")
     time.sleep(2)
-    print("Welcome to game-ish " + name)
-    time.sleep(2)
-    print("Press 1 to start the game and press 2 to stop the game")
-    opt = int(input("Select 1 or 2 : "))
+    print(" 1. Play")
+    print(" 2. Exit")
+
+    opt = input("Enter the number : ")
     if opt == 1:
         game()
+    else:
+        sys.exit()
 
 
 def game():
 
+    player = human(input("Input your username : "))
+    time.sleep(2)
+    print("Hello " + player.name + ". Welcome to the game")
+    time.sleep(2)
     print("Weapon available :")
     print("1. Ak-47")
     print("2. M4A1")
@@ -34,17 +42,17 @@ def game():
 
     weapon = int(input("Enter your weapon : "))
     if weapon == 1:
-        wpn1(enemyNormal)
+        wpn1()
 
     print("Enemy Difficulty :")
     print("1. Easy")
     print("2. Normal")
     print("3. Hard")
 
-    #difficulty = int(input("Select enemy difficulty : "))
+    # difficulty = int(input("Select enemy difficulty : "))
 
 
-def wpn1(enemyNormal):
+def wpn1():
     print("Ak-47 selected")
     damage = 400
     hit = random.uniform(0, 1)
@@ -77,5 +85,5 @@ def wpn1(enemyNormal):
 
 main()
 # if difficulty ==1:
-#print("Enemy turn!")
-#print("Enemy Attacking!")
+# print("Enemy turn!")
+# print("Enemy Attacking!")
