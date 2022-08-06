@@ -53,16 +53,16 @@ def game():
 
 
 def wpn1():
-    print("Ak-47 selected")
+    print(weapons[0])
     damage = 400
     hit = random.uniform(0, 1)
     print("Firing...")
-    if hit >= 1:
+    if hit >= 0.1:
 
         time.sleep(2)
         print("Target Hit!")
-        enemyNormal = enemyNormal - damage
-        if enemyNormal <= 0:
+        enemies[1][1] = enemies[1][1] - damage
+        if enemies[1][1] <= 0:
             print("Target Eliminated!")
             time.sleep(2)
             print("Mission accomplished! \n")
@@ -77,7 +77,7 @@ def wpn1():
                 game()
 
         else:
-            print("Target Remaining health :" + str(enemyNormal))
+            print("Target Remaining health :" + str(enemies[1][1]))
 
     else:
         print("Missed!")
