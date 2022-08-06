@@ -1,11 +1,13 @@
 class Weapon:
-    def __init__(self, name, acc, dmg):
+    def __init__(self, name, attack, accuracy):
         self.name = name
-        self.acc = acc
-        self.dmg = dmg
+        self.atk = attack
+        self.acc = accuracy
 
-    def getName(self):
+    def info(self):
         print("Weapon Name : " + self.name)
+        print('Attack : ' + self.atk)
+        print('Accuracy : ' + self.acc)
 
 # FOR TESTING PURPOSES
 # wpn1 = weapon("Ak-47", 0.6, 40)

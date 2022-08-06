@@ -1,15 +1,27 @@
-class Enemy:
-    def __init__(self, name, health):
-        self.name = name
-        self.health = health
+import random
+from typing_extensions import Self
 
-    def getHealth(self):
-        print(self.name + "'s HP: " + str(self.health))
+
+class Enemy:
+    def __init__(self, name, health, attack):
+        self.name = name
+        self.hp = health
+        self.atk = attack
+
+    def attack(self, target):
+        chance = random.uniform(0, 1)
+        if chance > target.eva:
+            print(self.name + ' hit you.')
+            return self.atk
+        else:
+            print(self.name + '\'s attack miss.')
+            return 0
+
 
 # FOR TESTING PURPOSES
-# easy = enemy('Slime', 50)
-# normal = enemy('Goblin', 100)
-# hard = enemy('Golem', 200)
-# easy.getHealth()
-# normal.getHealth()
-# hard.getHealth()
+# easy = Enemy('Slime', 50)
+# normal = Enemy('Goblin', 100)
+# hard = Enemy('Golem', 200)
+# easy.attack()
+# normal.attack()
+# hard.attack()
