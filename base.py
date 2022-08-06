@@ -1,10 +1,9 @@
-from ast import For
 from os import system
+from Character import *
+from Database import *
 import random
 import sys
 import time
-from character import human
-from database import *
 
 # FOR TESTING PURPOSES
 # health = 100
@@ -15,7 +14,7 @@ from database import *
 
 def main():
     # mainMenu()
-    game()
+    selectionMode()
 
 
 def mainMenu():
@@ -30,37 +29,22 @@ def mainMenu():
 
 
 def selectionMode():
-    player = human(input("Input your username : "))
+    player = Human(input("Input your username : "))
     print("Hello, " + player.name + ". Welcome to the game")
     time.sleep(2)
 
-    weapon_input = False
-    while weapon_input == False:
-        print("Weapon available :")
-        for i in range(1, len(weapons)+1):
-            print(str(i) + ". " + weapons[i-1].name)
-
-        weapon = input("Enter your weapon : ")
-        if weapon == "1":
-            human.equipWeapon(weapons[0])
-            weapon_input = True
-        elif weapon == "2":
-            human.equipWeapon(weapons[1])
-            weapon_input = True
-        elif weapon == "3":
-            human.equipWeapon(weapons[2])
-            weapon_input = True
-        else:
-            print("Invalid input")
-            weapon_input = False
-            system('cls')
+    print("Weapon available :")
+    for i in range(1, len(weapons)+1):
+        print(str(i) + ". " + weapons[i-1].name)
+    weapon = int(input("Enter your weapon : "))
+    player.equipWeapon(weapons[weapon-1])
 
     difficulty_input = False
     while difficulty_input == False:
         print("Select your difficulty :\n1. Easy\n2. Normal\n3. Hard")
         difficulty = input("Select your difficulty : ")
         if difficulty == "1":
-            wpn1()
+            easy()
             difficulty_input = True
         # elif difficulty == "2":
         #     normal()
@@ -74,7 +58,7 @@ def selectionMode():
             system('cls')
 
 
-def wpn1():
+def easy():
     print(weapons[0].name)
     battle_enemy_1 = enemies[1]
     damage = weapons[0].dmg

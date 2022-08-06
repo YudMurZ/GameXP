@@ -1,4 +1,4 @@
-class weapon:
+class Weapon:
     def __init__(self, name, acc, dmg):
         self.name = name
         self.acc = acc
