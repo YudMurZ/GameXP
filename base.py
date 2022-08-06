@@ -88,6 +88,27 @@ def easy():
     else:
         time.sleep(2)
         print("Missed!")
+        
+def enemyATK1():
+    time.sleep(2)
+    battle_enemies_atk_1 = enemies[1]
+    player_cond = human
+    attack = enemies[1].attack
+    hit = enemies[1].acc
+    chance = random.uniform(0,1)
+    if hit <= chance:
+        print("You are hit!")
+        playerHP = human.health - attack
+       
+        if playerHP <= 0:
+            print("You are dead!")
+
+        else:
+             print("Your health = " + playerHP)
+
+
+    else:
+        print("Enemy Missed!")
 
 
 main()
