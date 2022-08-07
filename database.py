@@ -2,7 +2,7 @@ from Enemy import *
 from Weapon import *
 
 weapons = [
-    Weapon('Ak-47', 40, 0.45),
+    Weapon('Ak-47', 40, 0.55),
     Weapon('M4A1', 25, 0.75),
     Weapon('Mp5', 20, 0.9)
 ]

@@ -1,9 +1,11 @@
-import random
+# import random
 import sys
 import time
 from os import system
 from Database import *
 from Character import *
+
+opponents = []
 
 
 def main():
@@ -39,7 +41,7 @@ def selectionMode():
     # diff_input = False
     # while diff_input == False:
     system('cls')
-    print('DIFFICULTY\n1. Easy\n2. Normal\n3. Hard')
+    print('DIFFICULTY\n 1. Easy\n 2. Normal\n 3. Hard')
     battleMode(player, int(input('Select your difficulty : ')))
 
 
@@ -51,26 +53,36 @@ def battleMode(player, diff):
     elif diff == 3:
         difficulty = 'Hard'
     system('cls')
-    opponents = []
-    for i in range(1, 1):
-        opponents.append(enemies[diff-1])
+    print(f'Battle Mode ({difficulty})')
 
-    print("Battle Mode (" + difficulty + ")")
+    global opponents
+    for i in range(0, 1):
+        opponents.append(enemies[diff-1])
+        print(opponents[i].name + ' approaching you.')
     time.sleep(2)
     while (len(opponents) > 0):
-        player.action(opponents)
+        print('PLAYER TURN')
+        time.sleep(2)
+        action = player.action(opponents)
+        if action == 'flee':
+            restart()
+        elif isinstance(action, list):
+            if action[0] == 'enemy die':
+                del opponents[action[1]]
         if len(opponents) == 0:
             print("You win!")
             time.sleep(2)
             restart()
         else:
+            print('OPPONENTS TURN')
+            time.sleep(2)
             for i in opponents:
-                opponents[i].attack(player)
+                i.attack(player)
 
 
 def restart():
     system('cls')
-    print("Play again?\n1. Yes\n2. No")
+    print("Play again?\n 1. Yes\n 2. No")
     pick = int(input("Select your choice : "))
     if pick == 2:
         sys.exit()
@@ -78,67 +90,67 @@ def restart():
         selectionMode()
 
 
-def easy():
-    print(weapons[0].name)
-    time.sleep(2)
+# def easy():
+#     print(weapons[0].name)
+#     time.sleep(2)
 
-    battle_enemy_1 = enemies[1]
-    damage = weapons[0].dmg
-    hit = random.uniform(0, 1)
-    print("Firing...")
-    if hit >= weapons[0].acc:
-        time.sleep(2)
-        print("Target Hit!")
-        enemyHP = enemies[1].health - damage
-        if enemyHP <= 0:
-            del battle_enemy_1
-            time.sleep(2)
-            print("Mission accomplished! \n")
-            time.sleep(2)
-            print("Play again?")
-            print("1. Yes")
-            print("2. No")
-            pick = int(input("Select your choice : "))
-            if pick == 2:
-                sys.exit()
-            if pick == 1:
-                selectionMode()
+#     battle_enemy_1 = enemies[1]
+#     damage = weapons[0].dmg
+#     hit = random.uniform(0, 1)
+#     print("Firing...")
+#     if hit >= weapons[0].acc:
+#         time.sleep(2)
+#         print("Target Hit!")
+#         enemyHP = enemies[1].health - damage
+#         if enemyHP <= 0:
+#             del battle_enemy_1
+#             time.sleep(2)
+#             print("Mission accomplished! \n")
+#             time.sleep(2)
+#             print("Play again?")
+#             print("1. Yes")
+#             print("2. No")
+#             pick = int(input("Select your choice : "))
+#             if pick == 2:
+#                 sys.exit()
+#             if pick == 1:
+#                 selectionMode()
 
-        else:
-            print("Target Remaining health :" + str(enemyHP))
-            time.sleep(2)
-            print("Enemy Turn!")
-            enemyATK1()
+#         else:
+#             print("Target Remaining health :" + str(enemyHP))
+#             time.sleep(2)
+#             print("Enemy Turn!")
+#             enemyATK1()
 
-    else:
-        dmg = 0
-        enemyHP = enemies[1].health - dmg
-        time.sleep(2)
-        print("Missed!")
-        print("Target Remaining health :" + str(enemyHP))
-        time.sleep(2)
-        enemyATK1()
+#     else:
+#         dmg = 0
+#         enemyHP = enemies[1].health - dmg
+#         time.sleep(2)
+#         print("Missed!")
+#         print("Target Remaining health :" + str(enemyHP))
+#         time.sleep(2)
+#         enemyATK1()
 
 
-def enemyATK1():
-    time.sleep(2)
-    battle_enemies_atk_1 = enemies[1]
-    player_cond = Player
-    attack = enemies[1].attack
-    hit = enemies[1].acc
-    chance = random.uniform(0, 1)
-    if hit <= chance:
-        print("You are hit!")
-        playerHP = Player.health - attack
+# def enemyATK1():
+#     time.sleep(2)
+#     battle_enemies_atk_1 = enemies[1]
+#     player_cond = Player
+#     attack = enemies[1].attack
+#     hit = enemies[1].acc
+#     chance = random.uniform(0, 1)
+#     if hit <= chance:
+#         print("You are hit!")
+#         playerHP = Player.health - attack
 
-        if playerHP <= 0:
-            print("You are dead!")
+#         if playerHP <= 0:
+#             print("You are dead!")
 
-        else:
-            print("Your health = " + str(playerHP))
+#         else:
+#             print("Your health = " + str(playerHP))
 
-    else:
-        print("Enemy Missed!")
+#     else:
+#         print("Enemy Missed!")
 
 
 main()
