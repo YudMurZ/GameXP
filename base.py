@@ -57,21 +57,25 @@ def battleMode(player, diff):
 
     print("Battle Mode (" + difficulty + ")")
     time.sleep(2)
-    player.action(opponents)
-    if len(opponents) == 0:
-        print("You win!")
-        time.sleep(2)
-        print("Play again?")
-        print("1. Yes")
-        print("2. No")
-        pick = int(input("Select your choice : "))
-        if pick == 2:
-            sys.exit()
-        if pick == 1:
-            selectionMode()
-    else:
-        for i in opponents:
-            opponents[i].attack(player)
+    while (len(opponents) > 0):
+        player.action(opponents)
+        if len(opponents) == 0:
+            print("You win!")
+            time.sleep(2)
+            restart()
+        else:
+            for i in opponents:
+                opponents[i].attack(player)
+
+
+def restart():
+    system('cls')
+    print("Play again?\n1. Yes\n2. No")
+    pick = int(input("Select your choice : "))
+    if pick == 2:
+        sys.exit()
+    if pick == 1:
+        selectionMode()
 
 
 def easy():

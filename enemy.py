@@ -5,6 +5,19 @@ class Enemy:
         self.hp = health
         self.atk = attack
 
+    def __del__(self):
+        print(self.name + ' is dead.')
+
+        return
+
+    def receiveDmg(self, dmg, target_index):
+        self.hp -= dmg
+        if self.hp <= 0:
+            opponents.pop(target_index)
+            del self
+        else:
+            print(self.name + ' received ' + str(dmg) + ' damage.')
+
     def attack(self, target):
         if random.uniform(0, 1) >= target.eva:
             print(self.name + ' hit you.')

@@ -28,30 +28,28 @@ class Player:
                     print(
                         str(i) + ". " + opponents[i-1].targetInfo())
                     i += 1
-            target = input('Select target : ')
+            target = int(input('Select target : '))
             if target == i:
                 self.action()
             else:
-                self.attack(opponents[target-1])
+                self.attack(opponents[target-1], target-1)
         elif opt == '2':
             print('You are running away...')
-            time.sleep(2)
+            time.sleep(1)
             print('You fled.')
             time.sleep(2)
+            restart()
         else:
             self.action()
 
-    def attack(self, target):
+    def attack(self, target, target_index):
         print('Attacking....')
         time.sleep(2)
         if random.uniform(0, 1) <= self.acc:
-            target.health -= self.weapon.dmg
+            target.receiveDmg(self.weapon.atk, target_index)
+            target.health -= self.weapon.atk
             print(target.name + ' received ' +
                   str(self.weapon.dmg) + ' damage.')
-            time.sleep(1)
-            if target.health <= 0:
-                del target
-                print(target.name + ' is dead!')
             return
         else:
             print('Attack missed.')
