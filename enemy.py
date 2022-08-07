@@ -1,4 +1,5 @@
 import random
+import time
 
 
 class Enemy:
@@ -11,13 +12,15 @@ class Enemy:
     def receiveDmg(self, dmg):
         self.hp -= dmg
         if self.hp <= 0:
+            print(self.name + ' received ' + str(dmg) + ' damage.')
+            time.sleep(1)
             print(self.name + ' is dead.')
             return 'enemy die'
         else:
             print(self.name + ' received ' + str(dmg) + ' damage.')
 
     def attack(self, target):
-        if random.uniform(0, 1) >= target.eva:
+        if random.uniform(0, 1) >= target.eva/100:
             print(self.name + ' hit you.')
             target.receiveDmg(self.atk)
         else:

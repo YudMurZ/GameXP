@@ -5,12 +5,13 @@ from os import system
 from Database import *
 from Character import *
 
+player = None
 opponents = []
 
 
 def main():
     # mainMenu()
-    selectionMode()
+    battleMode(selectionMode())
 
 
 def mainMenu():
@@ -19,13 +20,14 @@ def mainMenu():
     print(' 1. Play\n 2. Exit')
     opt = input('Enter number : ')
     if opt == '1':
-        selectionMode()
+        return
     else:
         sys.exit()
 
 
 def selectionMode():
     system('cls')
+    global player
     player = Player(input('Input player name : '))
     print('Hello, ' + player.name + '. Welcome to the game')
     time.sleep(2)
@@ -38,14 +40,12 @@ def selectionMode():
     player.equipWeapon(weapons[weapon-1])
     time.sleep(2)
 
-    # diff_input = False
-    # while diff_input == False:
     system('cls')
     print('DIFFICULTY\n 1. Easy\n 2. Normal\n 3. Hard')
-    battleMode(player, int(input('Select your difficulty : ')))
+    return int(input('Select your difficulty : '))
 
 
-def battleMode(player, diff):
+def battleMode(diff):
     if diff == 1:
         difficulty = 'Easy'
     elif diff == 2:
@@ -56,6 +56,7 @@ def battleMode(player, diff):
     print(f'Battle Mode ({difficulty})')
 
     global opponents
+    global player
     for i in range(0, 1):
         opponents.append(enemies[diff-1])
         print(opponents[i].name + ' approaching you.')
@@ -84,10 +85,10 @@ def restart():
     system('cls')
     print("Play again?\n 1. Yes\n 2. No")
     pick = int(input("Select your choice : "))
-    if pick == 2:
-        sys.exit()
     if pick == 1:
         selectionMode()
+    else:
+        sys.exit()
 
 
 # def easy():
@@ -155,5 +156,5 @@ def restart():
 
 main()
 # if difficulty ==1:
-#print("Enemy turn!")
-#print("Enemy Attacking!")
+# print("Enemy turn!")
+# print("Enemy Attacking!")

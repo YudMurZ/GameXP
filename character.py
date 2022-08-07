@@ -10,10 +10,7 @@ class Player:
         self.weapon = 'Unequipped'
         self.atk = 0
         self.acc = 0
-        self.eva = 25
-
-    def __del__(self):
-        print('You are Dead')
+        self.eva = 50
 
     def stats(self):
         print('Name : ' + self.name)
@@ -69,6 +66,7 @@ class Player:
     def receiveDmg(self, dmg):
         self.health -= dmg
         if self.health <= 0:
+            print('You are Dead.')
             del self
         else:
             print('You received ' + str(dmg) + ' damage.')
