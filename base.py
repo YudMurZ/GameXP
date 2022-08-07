@@ -34,6 +34,7 @@ def selectionMode():
         print(str(i) + ". " + weapons[i-1].name)
     weapon = int(input("Enter your weapon : "))
     player.equipWeapon(weapons[weapon-1])
+    time.sleep(2)
 
     # diff_input = False
     # while diff_input == False:
@@ -50,35 +51,27 @@ def battleMode(player, diff):
     elif diff == 3:
         difficulty = 'Hard'
     system('cls')
-    enemy = enemies[diff-1]
+    opponents = []
+    for i in range(1, 1):
+        opponents.append(enemies[diff-1])
+
     print("Battle Mode (" + difficulty + ")")
     time.sleep(2)
-
-    # action = False
-    # while action == False:
-    system('cls')
-    print('PLAYER TURN\n1. Attack\n2. Run')
-    opt = input('Select Action : ')
-    if opt == '1':
-        # action = True
-        player.attack(enemy)
-    elif opt == '2':
-        # action = True
-        print('You are running away...')
+    player.action(opponents)
+    if len(opponents) == 0:
+        print("You win!")
         time.sleep(2)
-        print('You fled.')
-        time.sleep(2)
-        # else:
-        #     print('Invalid input')
-        #     action = False
-
-    system('cls')
-    print('Play again?\n1. Yes\n2. No')
-    pick = int(input('Select your choice : '))
-    if pick == 2:
-        sys.exit()
-    if pick == 1:
-        selectionMode()
+        print("Play again?")
+        print("1. Yes")
+        print("2. No")
+        pick = int(input("Select your choice : "))
+        if pick == 2:
+            sys.exit()
+        if pick == 1:
+            selectionMode()
+    else:
+        for i in opponents:
+            opponents[i].attack(player)
 
 
 def easy():
