@@ -1,7 +1,7 @@
 import time
 import random
 from os import system
-from unicodedata import name
+from weapon import *
 
 
 class Player:
@@ -12,35 +12,51 @@ class Player:
         self.eva = 50
 
     def info(self):
-        print(f'Name : {self.name}')
-        print(f'Weapon : {self.weapon.name}')
-        print(f'HP : {self.health}')
-        print(f'Attack : {self.weapon.atk}')
-        print(f'Accuracy : {self.weapon.acc*100}%')
-        print(f'Evasion : {self.eva}')
+        system('cls')
+        print(self.name,
+              f'\nWeapon   {self.weapon.name}',
+              f'\nHealth   {self.health}/100',
+              f'\nAttack   {self.weapon.atk}',
+              f'\nAccuracy {int(self.weapon.acc*100)}%',
+              f'\nEvasion  {self.eva}')
+        input('\nPress Enter to continue...')
 
-    def equipWeapon(self, weapon):
+    def equipWeapon(self, weapon: Weapon):
         self.weapon = weapon
-        print(f'{self.weapon.name} is equipped.')
-        time.sleep(2)
+        print(f'\n{self.weapon.name} is equipped.')
 
     def action(self, opponents):
         system('cls')
-        print(f'{self.name} ({self.health}/100)\n 1. Attack\n 2. Run')
+        print(f'{self.name} ({self.health}/100)\n 1. Attack\n 2. Info\n 3. Run')
         opt = input('Select Action : ')
+
         if opt == '1':
-            print('\nOPPONENTS')
-            i = 1
-            while i <= len(opponents):
-                print(str(i) + ". " + opponents[i-1].targetInfo())
-                i += 1
-            print(str(i) + '. Back')
+            # Attack opponent
+            print('\nATTACK')
+            for i, enemy in enumerate(opponents):
+                print(f' {i+1}. {enemy.name} ({enemy.hp}/100)')
+            print(f' 0. Back')
             target = int(input('Select target : '))
-            if target > len(opponents):
+            if target == 0 or target > len(opponents):
                 self.action(opponents)
             else:
                 return [self.attack(opponents[target-1]), target-1]
+
         elif opt == '2':
+            # Info
+            print(f'\nINFO\n 1. {self.name}')
+            for i, enemy in enumerate(opponents):
+                print(f' {i+2}. {enemy.name}')
+            print(f' 0. Back')
+            target = int(input('Select target : '))
+            if target == 1:
+                self.info()
+            elif target in range(2, len(opponents)+2):
+                opponents[target-2].info()
+            self.action(opponents)
+
+        elif opt == '3':
+            # Run away
             system('cls')
             print('You are running away...')
             time.sleep(1)
@@ -48,12 +64,8 @@ class Player:
             time.sleep(2)
             return 'flee'
 
-        elif opt == '3':
-            print(
-                f'Weapon Damage : {self.weapon.atk} \nWeapon Hit Chance : {self.weapon.acc*100}')
-
         else:
-            self.action()
+            return self.action(opponents)
 
     def attack(self, target):
         system('cls')

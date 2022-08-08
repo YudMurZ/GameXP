@@ -1,5 +1,7 @@
 import random
 import time
+from os import system
+from character import Player
 
 
 class Enemy:
@@ -11,15 +13,14 @@ class Enemy:
 
     def receiveDmg(self, dmg):
         self.hp -= dmg
+        print(f'{self.name} received {dmg} damage.')
+        time.sleep(2)
         if self.hp <= 0:
-            print(self.name + ' received ' + str(dmg) + ' damage.')
-            time.sleep(1)
             print(self.name + ' is dead.')
             return 'enemy die'
-        else:
-            print(self.name + ' received ' + str(dmg) + ' damage.')
 
-    def attack(self, target):
+    def attack(self, target: Player):
+        system('cls')
         if random.uniform(0, 1) >= target.eva/100:
             print(self.name + ' hit you.')
             target.receiveDmg(self.atk)
@@ -27,16 +28,17 @@ class Enemy:
             print(self.name + '\'s attack miss.')
             return 0
 
+    def info(self):
+        system('cls')
+        print(self.name,
+              f'\nHealth {self.hp}/{self.max_hp}',
+              f'\nAttack {self.atk}')
+        input('\nPress any key to continue...')
+
     def targetInfo(self):
-        # hp = str(self.hp)
-        # max_hp = str(self.max_hp)
         return f'{self.name}\t\t({self.hp}/{self.max_hp})'
 
 
 # FOR TESTING PURPOSES
-# easy = Enemy('Slime', 50)
-# normal = Enemy('Goblin', 100)
-# hard = Enemy('Golem', 200)
-# easy.attack()
-# normal.attack()
-# hard.attack()
+# enemy1 = Enemy('Slime', 50, 15)
+# enemy1.receiveDmg(999)
