@@ -1,5 +1,5 @@
-from Enemy import *
-from Weapon import *
+from enemy import *
+from weapon import *
 
 weapons = [
     Weapon('AK-47', 40, 0.55),

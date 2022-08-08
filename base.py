@@ -2,8 +2,8 @@
 import sys
 import time
 from os import system
-from Database import *
-from Character import *
+from database import *
+from character import *
 
 player = None
 opponents = []

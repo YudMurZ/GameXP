@@ -25,9 +25,8 @@ class Player:
         self.atk = weapon.atk
         self.acc = weapon.acc
         print(self.weapon.name + ' is equipped.')
-        print('Weapon Hit Chance : '+ str(self.acc*100) +'%')
+        print('Weapon Hit Chance : ' + str(self.acc*100) + '%')
         time.sleep(2)
-
 
     def action(self, opponents):
         system('cls')
@@ -52,10 +51,11 @@ class Player:
             print('You fled.')
             time.sleep(2)
             return 'flee'
-        
-         elif opt == '3':
-            print(f'Weapon Damage : {self.atk} \nWeapon Hit Chance : {self.acc*100}')
-            
+
+        elif opt == '3':
+            print(
+                f'Weapon Damage : {self.atk} \nWeapon Hit Chance : {self.acc*100}')
+
         else:
             self.action()
 

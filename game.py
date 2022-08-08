@@ -1,4 +1,4 @@
-from Character import Player
+from character import Player
 
 
 class Battle:
