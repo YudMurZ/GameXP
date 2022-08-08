@@ -1,4 +1,5 @@
 # import random
+from secrets import choice
 import sys
 import time
 from os import system
@@ -29,18 +30,16 @@ def selectionMode():
     system('cls')
     global player
     player = Player(input('Input player name : '))
-    print('\nHello, ' + player.name + '. Welcome to the game')
+    print('\nHello, ' + player.name + '. Welcome to the game!')
     time.sleep(2)
 
     system('cls')
     print('WEAPONS')
-    # for i in weapons:
-    #     print(i[0])
     for i, weapon in enumerate(weapons):
-        print(f'{i+1}. {weapon.name} (ATK {weapon.atk} | ACC {int(weapon.acc*100)}%)')
-    weapon = int(input('Enter your weapon : '))
-    # player.equipWeapon(Weapon(weapon-1))
-    player.equipWeapon(weapons[weapon-1])
+        print(
+            f'{i+1}. {weapon[0]} (ATK {weapon[1]} | ACC {int(weapon[2]*100)}%)')
+    choice = int(input('Enter your weapon : '))
+    player.equipWeapon(Weapon(weapons[choice-1]))
     time.sleep(2)
 
     system('cls')
@@ -62,7 +61,7 @@ def battleMode(diff):
     global opponents
     global player
     for i in range(1):
-        opponents.append(enemies[diff-1])
+        opponents.append(Enemy(enemies[diff-1]))
         print(opponents[i].name + ' is approaching.')
     time.sleep(2)
     while (len(opponents) > 0):

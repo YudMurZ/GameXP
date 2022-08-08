@@ -5,11 +5,10 @@ from character import Player
 
 
 class Enemy:
-    def __init__(self, name, health, attack):
-        self.name = name
-        self.max_hp = health
-        self.hp = health
-        self.atk = attack
+    def __init__(self, data: list):
+        self.name = data[0]
+        self.hp = self.max_hp = data[1]
+        self.atk = data[2]
 
     def receiveDmg(self, dmg):
         self.hp -= dmg

@@ -58,7 +58,7 @@ class Player:
         elif opt == '3':
             # Run away
             system('cls')
-            print('You are running away...')
+            print('Running away...')
             time.sleep(1)
             print('You fled.')
             time.sleep(2)
