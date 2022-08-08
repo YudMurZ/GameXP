@@ -31,8 +31,7 @@ class Player:
         print(f'{self.name} ({self.health}/100)\n 1. Attack\n 2. Run')
         opt = input('Select Action : ')
         if opt == '1':
-            system('cls')
-            print('OPPONENTS')
+            print('\nOPPONENTS')
             i = 1
             while i <= len(opponents):
                 print(str(i) + ". " + opponents[i-1].targetInfo())

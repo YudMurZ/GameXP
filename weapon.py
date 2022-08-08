@@ -1,8 +1,13 @@
 class Weapon:
     def __init__(self, name, attack, accuracy):
-        self.name = name
-        self.atk = attack
-        self.acc = accuracy
+        if isinstance(name, list):
+            self.name = name[0]
+            self.atk = name[1]
+            self.acc = name[2]
+        else:
+            self.name = name
+            self.atk = attack
+            self.acc = accuracy
 
     def info(self):
         print("Weapon Name : " + self.name)
@@ -10,6 +15,5 @@ class Weapon:
         print('Accuracy : ' + self.acc)
 
 # FOR TESTING PURPOSES
-# wpn1 = weapon("Ak-47", 0.6, 40)
-# wpn2 = weapon("M4A1", 0.8, 25)
-# wpn1.getName()
+# wpn1 = Weapon('AK-47', 40, 0.55)
+# wpn1.info()

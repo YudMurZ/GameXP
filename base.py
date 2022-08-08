@@ -34,9 +34,12 @@ def selectionMode():
 
     system('cls')
     print('WEAPON')
+    # for i in weapons:
+    #     print(i[0])
     for i in range(1, len(weapons)+1):
-        print(str(i) + ". " + weapons[i-1].name)
-    weapon = int(input("Enter your weapon : "))
+        print(str(i) + '. ' + weapons[i-1].name)
+    weapon = int(input('Enter your weapon : '))
+    # player.equipWeapon(Weapon(weapon-1))
     player.equipWeapon(weapons[weapon-1])
     time.sleep(2)
 
