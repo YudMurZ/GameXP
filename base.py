@@ -36,8 +36,8 @@ def selectionMode():
     print('WEAPON')
     # for i in weapons:
     #     print(i[0])
-    for i in range(1, len(weapons)+1):
-        print(str(i) + '. ' + weapons[i-1].name)
+    for i, weapon in enumerate(weapons):
+        print(f'{i+1}. {weapon.name} (ATK {weapon.atk} | ACC {int(weapon.acc*100)}%)')
     weapon = int(input('Enter your weapon : '))
     # player.equipWeapon(Weapon(weapon-1))
     player.equipWeapon(weapons[weapon-1])

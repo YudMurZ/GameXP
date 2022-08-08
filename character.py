@@ -1,31 +1,27 @@
 import time
 import random
 from os import system
+from unicodedata import name
 
 
 class Player:
     def __init__(self, name):
         self.name = name
         self.health = 100
-        self.weapon = 'Unequipped'
-        self.atk = 0
-        self.acc = 0
+        self.weapon = None
         self.eva = 50
 
-    def stats(self):
-        print('Name : ' + self.name)
-        print('Weapon : ' + self.weapon.name)
-        print('HP : ' + str(self.health))
-        print('Attack : ' + str(self.atk))
-        print('Accuracy : ' + str(self.acc*100) + '%')
-        print('Evasion : ' + str(self.eva))
+    def info(self):
+        print(f'Name : {self.name}')
+        print(f'Weapon : {self.weapon.name}')
+        print(f'HP : {self.health}')
+        print(f'Attack : {self.weapon.atk}')
+        print(f'Accuracy : {self.weapon.acc*100}%')
+        print(f'Evasion : {self.eva}')
 
     def equipWeapon(self, weapon):
         self.weapon = weapon
-        self.atk = weapon.atk
-        self.acc = weapon.acc
-        print(self.weapon.name + ' is equipped.')
-        print('Weapon Hit Chance : ' + str(self.acc*100) + '%')
+        print(f'{self.weapon.name} is equipped.')
         time.sleep(2)
 
     def action(self, opponents):
@@ -54,7 +50,7 @@ class Player:
 
         elif opt == '3':
             print(
-                f'Weapon Damage : {self.atk} \nWeapon Hit Chance : {self.acc*100}')
+                f'Weapon Damage : {self.weapon.atk} \nWeapon Hit Chance : {self.weapon.acc*100}')
 
         else:
             self.action()
@@ -63,8 +59,8 @@ class Player:
         system('cls')
         print('Attacking....')
         time.sleep(2)
-        if random.uniform(0, 1) <= self.acc:
-            return target.receiveDmg(self.atk)
+        if random.uniform(0, 1) <= self.weapon.acc:
+            return target.receiveDmg(self.weapon.atk)
         else:
             print('Attack missed.')
             return
