@@ -18,6 +18,7 @@ class Player:
               f'\nHealth   {self.health}/100',
               f'\nAttack   {self.weapon.atk}',
               f'\nAccuracy {int(self.weapon.acc*100)}%',
+              f'\nPellet   {self.weapon.pellet}',
               f'\nEvasion  {self.eva}')
         input('\nPress Enter to continue...')
 
@@ -72,7 +73,7 @@ class Player:
         print('Attacking....')
         time.sleep(2)
         if random.uniform(0, 1) <= self.weapon.acc:
-            return target.receiveDmg(self.weapon.atk)
+            return target.receiveDmg(self.weapon.atk * self.weapon.pellet)
         else:
             print('Attack missed.')
             return
