@@ -37,7 +37,7 @@ def selectionMode():
     print('WEAPONS')
     for i, weapon in enumerate(weapons):
         print(
-            f'{i+1}. {weapon[0]} (ATK {weapon[1]} | ACC {int(weapon[2]*100)}%)')
+            f'{i+1}. {weapon[0]} (ATK {weapon[1]} | ACC {int(weapon[2]*100)}%) | Pellet {weapon[3]}')
     choice = int(input('Enter your weapon : '))
     player.equipWeapon(Weapon(weapons[choice-1]))
     time.sleep(2)
