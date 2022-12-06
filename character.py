@@ -1,34 +1,47 @@
 import time
 import random
 from os import system
+from typing import List
+from enemy import Enemy
 from weapon import *
 
 
 class Player:
     def __init__(self, name):
-        self.name = name
-        self.health = 100
-        self.weapon = None
-        self.eva = 50
+        self.__name = name
+        self.__level = 1
+        self.__exp = 0
+        self.__max_health = self.__health = 100
+        self.__weapon: Weapon
+        self.__attack = None
+        self.__accuracy = None
+        self.__agility = 50
 
-    def info(self):
-        system('cls')
-        print(self.name,
-              f'\nWeapon   {self.weapon.name}',
-              f'\nHealth   {self.health}/100',
-              f'\nAttack   {self.weapon.atk}',
-              f'\nAccuracy {int(self.weapon.acc*100)}%',
-              f'\nPellet   {self.weapon.pellet}',
-              f'\nEvasion  {self.eva}')
-        input('\nPress Enter to continue...')
+    def get(self, stat):
+        return self.__dict__['_Player__'+stat]
 
     def equipWeapon(self, weapon: Weapon):
-        self.weapon = weapon
-        print(f'\n{self.weapon.name} is equipped.')
+        self.__weapon = weapon
+        weapon = weapon.fetchStat()
+        self.__attack = weapon['attack']
+        self.__accuracy = weapon['accuracy']
+        print(f'\n{weapon["name"]} is equipped.')
+
+    def switchWeapon(self, weapon: Weapon):
+        old = self.__weapon.fetchStat()
+        new = weapon.fetchStat()
+        self.__attack -= old['attack'] + new['attack']
+        self.__accuracy -= old['accuracy'] + new['accuracy']
+        print(f'\n{weapon["name"]} is equipped.')
 
     def action(self, opponents):
         system('cls')
-        print(f'{self.name} ({self.health}/100)\n 1. Attack\n 2. Info\n 3. Run')
+        print(
+            f'{self.__name} ({self.__health}/{self.__max_health})',
+            '\n 1. Attack',
+            '\n 2. Info',
+            '\n 3. Run'
+        )
         opt = input('Select Action : ')
 
         if opt == '1':
@@ -45,7 +58,7 @@ class Player:
 
         elif opt == '2':
             # Info
-            print(f'\nINFO\n 1. {self.name}')
+            print(f'\nINFO\n 1. {self.__name}')
             for i, enemy in enumerate(opponents):
                 print(f' {i+2}. {enemy.name}')
             print(f' 0. Back')
@@ -68,7 +81,7 @@ class Player:
         else:
             return self.action(opponents)
 
-    def attack(self, target):
+    def attack(self, target: Enemy):
         system('cls')
         print('Attacking....')
         time.sleep(2)
@@ -87,3 +100,19 @@ class Player:
             print('You received ' + str(dmg) + ' damage.')
             time.sleep(2)
         return
+
+    def info(self):
+        system('cls')
+        print(self.__name,
+              f'\nHealth   {self.__health}/{self.__max_health}',
+              f'\n\n{self.__weapon.get("name")}',
+              f'\nAttack   {self.__weapon.get("name")}',
+              f'\nAccuracy {int(self.__weapon.get("acc")*100)}%',
+              f'\nPellet   {self.__weapon.get("pellet")}',
+              f'\nAgility  {self.__agility}')
+        input('\nPress Enter to continue...')
+
+
+# FOR TESTING PURPOSE
+# player = Player('udin')
+# print(player.get('agility'))
