@@ -9,7 +9,7 @@ weapons = [
 ]
 
 enemies = [
-    ['Slime', 50, 15],
-    ['Goblin', 100, 35],
-    ['Golem', 200, 60]
+    ['Slime', 50, 15, 10],
+    ['Goblin', 100, 35, 15],
+    ['Golem', 200, 60, 2]
 ]
