@@ -24,6 +24,6 @@ class Weapon:
 
 
 # FOR TESTING PURPOSES
-wpn1 = Weapon(['AK-47', 40, 0.55, 1])
-print(wpn1.get('name'))
+# wpn1 = Weapon(['AK-47', 40, 0.55, 1])
+# print(wpn1.get('name'))
 # wpn1.info()
