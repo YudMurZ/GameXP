@@ -1,5 +1,3 @@
-# import random
-from secrets import choice
 import sys
 import time
 from os import system
