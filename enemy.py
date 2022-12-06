@@ -1,9 +1,7 @@
-from audioop import add
-import random
-import time
-from os import system
-from character import Player
-
+# import random
+# import time
+# from os import system
+# from character import Player
 
 class Enemy:
     def __init__(self, data: list):

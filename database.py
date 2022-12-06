@@ -1,6 +1,3 @@
-from enemy import *
-from weapon import *
-
 weapons = [
     ['AK-47', 40, 0.55, 1],
     ['M4A1', 25, 0.75, 1],
